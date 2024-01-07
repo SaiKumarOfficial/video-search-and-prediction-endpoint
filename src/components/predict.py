@@ -7,14 +7,15 @@ import cv2
 from collections import deque
 from from_root import from_root
 import os
+from collections import Counter
 
 class Prediction(object):
     def __init__(self):
         self.config = PredictConfig()
         self.device = 'cpu'
-        self.model_path = self.config.MODEL_PATHS[1]
+        self.model_path = self.config.MODEL_PATHS[1][0]
         self.sequence_length = self.config.SEQUENCE_LENGTH
-        self.annoy_artifact = self.config.MODEL_PATHS[0]
+        self.annoy_artifact = self.config.MODEL_PATHS[0][0]
         self.ann = CustomAnnoy(self.config.EMBEDDINGS_LENGTH, 
                                self.config.SEARCH_MATRIX)
         
@@ -76,66 +77,51 @@ class Prediction(object):
     def generate_links(self, embedding):
         return self.ann.get_nns_by_vector(embedding, self.config.NUMBER_OF_PREDICTIONS)
     
-    def predict_on_video(self, model, video_file_path, output_file_path, SEQUENCE_LENGTH):
-       
+    def predict_on_video(self, model, video_file_path, sequence_length):
         video_reader = cv2.VideoCapture(video_file_path)
+        video_frames_count = int(video_reader.get(cv2.CAP_PROP_FRAME_COUNT))
+        skip_frames_window = max(int(video_frames_count / sequence_length), 1)
 
-        # Get the width and height of the video.
-        original_video_width = int(video_reader.get(cv2.CAP_PROP_FRAME_WIDTH))
-        original_video_height = int(video_reader.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        logging.info(f"skip frames window : {skip_frames_window}")
+        print(f"skip frames window : {skip_frames_window}")
+        frames_queue = deque(maxlen=sequence_length)
+        predicted_labels = []
 
-        # Initialize the VideoWriter Object to store the output video in the disk.
-        video_writer = cv2.VideoWriter(output_file_path, cv2.VideoWriter_fourcc('M', 'P', '4', 'V'),
-                                    video_reader.get(cv2.CAP_PROP_FPS), (original_video_width, original_video_height))
+        frame_counter = 0
 
-        # Declare a queue to store video frames.
-        frames_queue = deque(maxlen = SEQUENCE_LENGTH)
-
-        # Initialize a variable to store the predicted action being performed in the video.
-        predicted_class_name = ''
-
-        # Iterate until the video is accessed successfully.
         while video_reader.isOpened():
+            # Set the current frame position of the video
+            video_reader.set(cv2.CAP_PROP_POS_FRAMES, frame_counter * skip_frames_window)
 
-            # Read the frame.
+            # Read the frame
             ok, frame = video_reader.read()
 
-            # Check if frame is not read properly then break the loop.
             if not ok:
                 break
 
-            # Resize the Frame to fixed Dimensions.
             resized_frame = cv2.resize(frame, (self.config.IMAGE_HEIGHT, self.config.IMAGE_WIDTH))
-
-            # Normalize the resized frame by dividing it with 255 so that each pixel value then lies between 0 and 1.
-            normalized_frame = resized_frame / 255
-
-            # Appending the pre-processed frame into the frames list.
+            normalized_frame = resized_frame / 255.0
             frames_queue.append(normalized_frame)
 
-            # Check if the number of frames in the queue are equal to the fixed sequence length.
-            if len(frames_queue) == self.sequence_length:
-                    
-                # Pass the normalized frames to the model and get the predicted probabilities.
-                predicted_labels_probabilities = model.predict(np.expand_dims(frames_queue, axis = 0))[0]
-
-                # Get the index of class with highest probability.
+            if len(frames_queue) == sequence_length:
+                # Batch prediction for better performance.
+                frames_batch = np.expand_dims(frames_queue, axis=0)
+                predicted_labels_probabilities = model.predict(frames_batch)[0]
                 predicted_label = np.argmax(predicted_labels_probabilities)
-
-                # Get the class name using the retrieved index.
                 predicted_class_name = self.config.CLASSES_LIST[predicted_label]
+                predicted_labels.append(predicted_class_name)
 
-            # Write predicted class name on top of the frame.
-            cv2.putText(frame, predicted_class_name, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+            frame_counter += 1
+        logging.info(f"Frame counter:{frame_counter}")
+        print(f"Frame counter:{frame_counter}")
 
-            # Write The frame into the disk using the VideoWriter Object.
-            video_writer.write(frame)
-
-        # Release the VideoCapture and VideoWriter objects.
         video_reader.release()
-        video_writer.release()
+
+        most_common_label = Counter(predicted_labels).most_common(1)
+        return most_common_label[0][0]
+
     
-    def run_predictions(self, video_file_path, output_file_path ):
+    def run_predictions(self, video_file_path):
         logging.info(f"Run the predcitions for {video_file_path}")
         video_frames = self.transforms(video_file_path)
         video_frames = video_frames.reshape((1,) + video_frames.shape)
@@ -152,20 +138,20 @@ class Prediction(object):
         logging.info("Load the model for Class prediction")
         model = tf.keras.models.load_model(self.model_path)
         
-        logging.info(f"Predict the class and return on video at the output file path {output_file_path}")
-        self.predict_on_video( model, video_file_path, output_file_path, self.sequence_length )
+        logging.info("Predict the class and return on video at the output file path ")
+        predicted_class = self.predict_on_video( model, video_file_path, self.sequence_length )
 
-        return predicted_similar_videos
+        return predicted_class, predicted_similar_videos
     
-if __name__=="__main__":
-    pred = Prediction()
-    video_file_path = os.path.join(from_root(), "test_videos", "input.mp4")
-    output_video_file_path = os.path.join(from_root(), "test_videos", "output.mp4")
+# if __name__=="__main__":
+#     pred = Prediction()
+#     video_file_path = os.path.join(from_root(), "test_videos", "input.mp4")
+#     #output_video_file_path = os.path.join(from_root(), "test_videos", "output.mp4")
 
-    # started predicrtions
-    resultant_links = pred.run_predictions(video_file_path, output_video_file_path)
+#     # started predicrtions
+#     predicted_class, resultant_links = pred.run_predictions(video_file_path)
 
-    logging.info(f"Resultant links: {resultant_links}")
-    print(resultant_links)
+#     logging.info(f"Resultant class: {predicted_class},Resultant links: {resultant_links}")
+#     print(predicted_class, resultant_links)
 
 
