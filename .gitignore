@@ -160,3 +160,5 @@ cython_debug/
 #.idea/
 prediction/
 notes.txt
+artifacts/
+test_videos/
