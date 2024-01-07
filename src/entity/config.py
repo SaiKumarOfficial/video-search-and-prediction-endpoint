@@ -33,7 +33,7 @@ class PredictConfig:
         self.NUMBER_OF_PREDICTIONS = 10
         self.STORE_PATH = os.path.join(from_root(), "artifacts")
         self.MODEL_PATHS = [(os.path.join(from_root(), "artifacts", "embeddings.ann"), "embeddings.ann"),
-                            (os.path.join(from_root(), "artifacts", "model.pth"), "model.pth")]
+                            (os.path.join(from_root(), "artifacts", "model.h5"), "model.h5")]
 
     def get_pipeline_config(self):
         return self.__dict__
