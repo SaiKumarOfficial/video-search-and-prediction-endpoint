@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Video Search and Classification</title>
+
+    <link rel="shortcut icon" href="../static/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/gallery.css">
+</head>
+
+<body>
+    <nav class="navbar  navbar-expand-md custom-navbar navbar-dark" style="background: #5256ad;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="static/logo.jpeg" width="50" height="50" class="d-inline-block align-top" alt="">
+                <span>Orb!t</span>
+            </a>
+            <div class="collapse navbar-collapse " id="collapsibleNavbar">
+                <ul class="navbar-nav m-auto ">
+                    <li class="nav-item">
+                        <h1>Visual Matches</h1>
+                    </li>
+                </ul>
+                <a class="btn btn-primary btn-sm" style="background: #FF362E; color: white; border-radius: 10px" href="/">Go Back</a>
+            </div>
+        </div>
+
+    </nav>
+
+
+    <div id="prediction-message" class="prediction-message">
+        <p>Congratulations! 🎉 The predicted class for the video is <strong>{{ predicted_class }}</strong>.</p>
+        <p>Enjoy watching and exploring more content! &#128640 🔍</p>
+
+    </div>
+
+
+    <div class="recommend-video">
+        <h2 class="recommend-title">
+            Recommendations for you &#128512;
+        </h2><br>
+    </div>
+
+
+    <div class="video-row">
+        {% for i in range(0, length) %}
+        <div class="video-card">
+            <video class="video-thumbnail" controls>
+              <source src="{{ searchedVideos[i] }}" type="video/mp4">
+            </video>
+            <div class="video-info">
+                <h5 class="video-title">{{ searchedVideos[i].split('/')[-1].replace(".mp4","") }}</h5>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+
+</html>
