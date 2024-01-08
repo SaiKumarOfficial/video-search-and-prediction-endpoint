@@ -1,8 +1,10 @@
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi import File, UploadFile
+from src.utils.application import save_uploaded_file, image_to_video
 from src.components.predict import Prediction
 from fastapi import FastAPI, Request,UploadFile, File, HTTPException
+from src.logger import logging
 import uvicorn
 import os      
 
@@ -16,30 +18,6 @@ predicted_class = ""
 predict_pipe = Prediction()
 
 
-def save_uploaded_file(file: UploadFile) -> str:
-    """
-    Save the uploaded video file and return its path.
-    """
-    upload_folder = "uploaded_videos"
-    os.makedirs(upload_folder, exist_ok=True)
-    # Clear the contents of the upload folder
-    for filename in os.listdir(upload_folder):
-        file_path = os.path.join(upload_folder, filename)
-        try:
-            if os.path.isfile(file_path):
-                os.unlink(file_path)
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=f"Failed to clear the upload folder: {e}")
-
-    # save the new file
-    file_path = os.path.join(upload_folder, file.filename)
-
-    try:
-        with open(file_path, "wb") as video_file:
-            video_file.write(file.file.read())
-        return file_path
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to save the video file: {e}")
     
 @app.get("/", status_code=200)
 @app.post("/")
@@ -49,6 +27,41 @@ async def index(request: Request):
     """
     return TEMPLATES.TemplateResponse(name='index.html', context={"request": request})
 
+@app.post('/image')
+async def predict_the_image_class(file: UploadFile = File(...)):
+    global searchedVideos, predict_pipe, predicted_class
+
+    try:
+        if predict_pipe:
+            file_extension = file.filename.split('.')[-1].lower()
+            logging.info(f"File_extension: {file_extension}")
+            logging.info(f"file : {file}")
+            logging.info(f"filecontent: {file.file}")
+
+
+            print(file_extension)
+            if file_extension in ['jpeg', 'jpg', 'png']:
+                # Process the uploaded image file and get the video file path
+                file_path = image_to_video(file)
+                
+                logging.info(f"file path: {file_path}")
+                print(file_path)
+            else:
+                return {"message": "Unsupported file format. Please upload a valid .mp4, .jpeg, or .png file."}
+            # Save the uploaded video file
+            # file_path = save_uploaded_file(file)
+
+            # Check if the file path is valid
+            if file_path:
+                # Run predictions with the video file path
+                predicted_class, searchedVideos = predict_pipe.run_predictions(file_path)
+                return {"message": "Prediction Completed"}
+            else:
+                return {"message": "Failed to save the video file."}
+        else:
+            return {"message": "First load the model in production using the reload_prod_model route"}
+    except Exception as e:
+        return {"message": f"There was an error processing the video file: {e}"}
 
 @app.post('/video')
 async def upload_video_and_predict(file: UploadFile = File(...)):
@@ -59,8 +72,16 @@ async def upload_video_and_predict(file: UploadFile = File(...)):
 
     try:
         if predict_pipe:
+            file_extension = file.filename.split('.')[-1].lower()
+
+            if file_extension == 'mp4':
+                # Save and process the uploaded video file
+                file_path = save_uploaded_file(file)
+            
+            else:
+                return {"message": "Unsupported file format. Please upload a valid .mp4, .jpeg, or .png file."}
             # Save the uploaded video file
-            file_path = save_uploaded_file(file)
+            # file_path = save_uploaded_file(file)
 
             # Check if the file path is valid
             if file_path:
@@ -111,5 +132,5 @@ async def gallery(request: Request):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=3001)
+    uvicorn.run(app, host="localhost", port=8000)
 
