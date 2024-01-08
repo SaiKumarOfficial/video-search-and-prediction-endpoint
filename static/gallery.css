@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800;900&display=swap');
 body {
     font-family: 'Raleway', sans-serif;
     background-color: #0A3D62;
@@ -22,9 +23,18 @@ body {
     color: #E2B842;
 }
 
-h1 {
+.nav-item h1 {
     color: #fff;
     font-weight: 700;
+    font-family: "Montserrat";
+    text-align: center;
+}
+
+.modern-heading {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
 @media only screen and (max-width: 760px) {

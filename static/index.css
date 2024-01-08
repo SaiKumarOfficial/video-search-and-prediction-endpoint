@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 .navbar-light .navbar-brand {
     color: rgba(0, 0, 0, .9);
-    font-family: 'Krona One', sans-serif;
 }
 
 .navbar-light .navbar-brand {
@@ -21,7 +19,7 @@ body {
     display: flex;
     justify-content: center;
     min-height: 100vh;
-    background: #0A3D62;
+    background: #5256ad;
 }
 
 .drag-area {
@@ -83,7 +81,7 @@ body {
     outline: none;
     background: #5256ad;
     color: #fff;
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
 }
@@ -95,6 +93,6 @@ body {
 
 #logo {
     display: inline-flex;
-    width: 100px;
-    height: 100px;
+    width: 250px;
+    height: 250px;
 }
