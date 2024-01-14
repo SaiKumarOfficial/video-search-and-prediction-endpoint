@@ -133,8 +133,8 @@ async def gallery(request: Request):
 
 
 if __name__ == "__main__":
-    connection = StorageConnection()
-    connection.get_package_from_testing()
+    # connection = StorageConnection()
+    # connection.get_package_from_testing()
 
-    uvicorn.run(app, host="0.0.0.0", port=8050)
+    uvicorn.run(app, host="localhost", port=8050)
 
