@@ -135,6 +135,6 @@ async def gallery(request: Request):
 if __name__ == "__main__":
     connection = StorageConnection()
     connection.get_package_from_testing()
-    
-    uvicorn.run(app, host="localhost", port=8080)
+
+    uvicorn.run(app, host="localhost", port=8000)
 
