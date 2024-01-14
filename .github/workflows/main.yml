@@ -76,8 +76,8 @@ jobs:
       - name: Pull App Image
         run: sudo docker pull ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:production
 
-      - name: Remove Already Running Container
-        run: docker ps -q --filter "name=production" | grep -q . && docker stop ${IMAGE_NAME} && docker rm -fv ${IMAGE_NAME} || true
+      # - name: Remove Already Running Container
+      #   run: docker ps -q --filter "name=production" | grep -q . && docker stop ${IMAGE_NAME} && docker rm -fv ${IMAGE_NAME} || true
 
       - name: Docker System Prune to Remove Old Images
         run: sudo docker system prune -f
