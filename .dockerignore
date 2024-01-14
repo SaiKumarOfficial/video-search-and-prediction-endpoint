@@ -1,0 +1,7 @@
+artifacts/
+build/
+dist/
+logs/
+prediction/
+test_videos/
+uploaded_videos/
