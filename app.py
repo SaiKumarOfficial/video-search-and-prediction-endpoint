@@ -4,6 +4,7 @@ from fastapi import File, UploadFile
 from src.utils.application import save_uploaded_file, image_to_video
 from src.components.predict import Prediction
 from fastapi import FastAPI, Request,UploadFile, File, HTTPException
+from src.components.storage_helper import StorageConnection
 from src.logger import logging
 import uvicorn
 import os      
@@ -132,5 +133,8 @@ async def gallery(request: Request):
 
 
 if __name__ == "__main__":
+    connection = StorageConnection()
+    connection.get_package_from_testing()
+    
     uvicorn.run(app, host="localhost", port=8080)
 
