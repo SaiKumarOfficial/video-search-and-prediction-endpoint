@@ -161,3 +161,4 @@ cython_debug/
 prediction/
 notes.txt
 test_videos/
+artifacts/

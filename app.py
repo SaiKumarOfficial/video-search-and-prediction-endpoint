@@ -9,6 +9,8 @@ from src.logger import logging
 import uvicorn
 import os      
 
+connection = StorageConnection()
+connection.get_package_from_testing()
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"))
@@ -16,8 +18,10 @@ TEMPLATES = Jinja2Templates(directory='templates')
 searchedVideos = []
 predicted_class = ""
 
+
 predict_pipe = Prediction()
 
+    
 
     
 @app.get("/", status_code=200)
@@ -26,6 +30,8 @@ async def index(request: Request):
     """
     Description : This Route loads the index.html
     """
+   
+    
     return TEMPLATES.TemplateResponse(name='index.html', context={"request": request})
 
 @app.post('/image')
@@ -133,8 +139,7 @@ async def gallery(request: Request):
 
 
 if __name__ == "__main__":
-    # connection = StorageConnection()
-    # connection.get_package_from_testing()
+    
 
     uvicorn.run(app, host="0.0.0.0", port=8050)
 
