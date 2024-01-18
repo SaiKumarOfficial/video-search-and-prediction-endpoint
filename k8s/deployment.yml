@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: video-search-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: video-search
+    spec:
+      containers:
+      - name: video-search-container
+        image: saikumar21/video-search-endpoint:production
+        ports:
+        - containerPort: 8050
+        envFrom:
+        - secretRef:
+            name: video-search-secret
