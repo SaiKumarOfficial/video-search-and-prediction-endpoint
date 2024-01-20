@@ -1,1 +1,116 @@
-# video-streaminig-prediction-endpoint
+# Orbit: Video Search and Classification
+
+## Overview
+
+Orbit is a web application designed to facilitate video search and classification, specifically tailored for content relevant to the Indian Space Research Organisation (ISRO). The application employs a Long-Short Term Memory with Recurrent Convolutional Networks (LRCN) model for video classification. It supports five initial class labels: 'Animation', 'Graphics', 'IndoorControlRoom', 'OutdoorLaunchpad', and 'PersonCloseUp'. Utilizing Annoy for efficient embedding representation, the application provides users with the ten most relevant videos using Approximate Nearest Neighbors (ANN).
+
+## Problem Statement
+
+Organizations like ISRO generate a vast amount of video content that needs to be categorized and made easily accessible. Traditional methods of video classification and search can be time-consuming and inefficient. There's also a concern about the storage space required for deploying such models, leading to increased costs.
+
+## Solution
+
+Orbit addresses these challenges by combining video classification and search functionalities within a single web application. It streamlines the process for users to input videos or images related to ISRO and receive classifications. The use of LRCN ensures accurate video categorization, and Annoy, coupled with ANN, efficiently retrieves the most relevant videos.
+
+
+
+## Tech Stack
+
+- Python
+- TensorFlow
+- AWS EC2, ECR, S3
+- Docker
+- Github Actions
+
+## Cost Optimization
+
+To reduce project costs, the Docker image size was minimized using multi-staged builds, decreasing from 3.79GB to 2.27GB. This optimization enabled deployment on a more cost-effective 8GB volume instance, eliminating the "no space" error encountered with the larger image.
+## In local
+![dockersizesInlocal](https://github.com/SaiKumarOfficial/video-streaming-data-collection/assets/95096218/a919ce03-ea13-4927-991d-afa64cb1e419)
+
+## In ECR:
+![dokersizesInECR](https://github.com/SaiKumarOfficial/video-streaming-data-collection/assets/95096218/45d0b233-5400-43b7-ac8f-151fb4e266b8)
+
+
+## Project Setup
+
+### Step 1: Clone the repository
+
+```bash
+git clone https://github.com/SaiKumarOfficial/video-streaming-data-collection.git
+```
+
+### Step 2: Create a conda environment
+
+```bash
+conda create -n <your-env-name> python=3.8.18 -y
+conda activate <your-env-name>
+```
+
+### Step 3: Install requirements
+
+```bash
+pip install -r requirements.txt
+```
+
+### Step 4: Set environment variables
+
+```bash
+export AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID>
+export AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY>
+export AWS_DEFAULT_REGION=<AWS_DEFAULT_REGION>
+export MONGODB_URL="mongodb+srv://<username>:<password>@cluster0.edjcajk.mongodb.net/?retryWrites=true&w=majority"
+```
+
+### Step 5: Run the application server
+
+```bash
+python app.py
+```
+
+### Step 6:  Access the application:
+
+Visit [http://localhost:8050/](http://localhost:8050/)
+
+![1-page](https://github.com/SaiKumarOfficial/video-streaming-data-collection/assets/95096218/c1140fdd-c897-4c57-bec7-9f2aee87414a)
+
+## Step 7: Provide Image or Video as Input
+![2-page](https://github.com/SaiKumarOfficial/video-streaming-data-collection/assets/95096218/bb41ef9f-826e-494c-9431-d0fbaa3e02e0)
+
+### Step 8: Explore similar videos
+
+Visit [http://localhost:8050/gallery](http://localhost:8050/gallery)
+![3-page](https://github.com/SaiKumarOfficial/video-streaming-data-collection/assets/95096218/d138be30-480f-49f0-a064-824ca4f83964)
+
+
+
+## Run Locally with Docker
+
+1. Check if the Dockerfile is available in the project directory.
+
+2. Build the Docker image:
+
+```bash
+docker build --build-arg AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID>
+ --build-arg AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY> 
+ --build-arg AWS_REGION=<AWS_REGION> 
+ --build-arg  MONGODB_URL=<MONGODB_URL> .
+```
+
+3. Run the Docker image:
+
+```bash
+docker run -d -p 8050:8050 <IMAGE_NAME>
+```
+
+4. Access the application locally:
+
+```bash
+http://localhost:8050/
+```
+
+To run the project, ensure the MongoDB URL is set, and execute the following command:
+
+```bash
+python app.py
+```
