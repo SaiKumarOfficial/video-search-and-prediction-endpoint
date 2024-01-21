@@ -12,7 +12,8 @@ Organizations like ISRO generate a vast amount of video content that needs to be
 
 Orbit addresses these challenges by combining video classification and search functionalities within a single web application. It streamlines the process for users to input videos or images related to ISRO and receive classifications. The use of LRCN ensures accurate video categorization, and Annoy, coupled with ANN, efficiently retrieves the most relevant videos.
 
-
+## Architecture
+![predictionEndpoint](https://github.com/SaiKumarOfficial/video-search-and-prediction-endpoint/assets/95096218/1de8e202-b8a2-4bfa-9ba3-ae0e07efd5e3)
 
 ## Tech Stack
 
@@ -20,11 +21,13 @@ Orbit addresses these challenges by combining video classification and search fu
 - TensorFlow
 - AWS EC2, ECR, S3
 - Docker
+- Mongodb
 - Github Actions
+
 
 ## Cost Optimization
 
-To reduce project costs, the Docker image size was minimized using multi-staged builds, decreasing from 3.79GB to 2.27GB. This optimization enabled deployment on a more cost-effective 8GB volume instance, eliminating the "no space" error encountered with the larger image.
+To reduce project costs, the Docker image size was minimized using multi-staged builds, decreasing from 3.79GB to 2.28GB. This optimization enabled deployment on a more cost-effective 8GB volume instance, eliminating the "no space" error encountered with the larger image.
 ## In local
 ![dockersizesInlocal](https://github.com/SaiKumarOfficial/video-streaming-data-collection/assets/95096218/a919ce03-ea13-4927-991d-afa64cb1e419)
 
@@ -114,3 +117,4 @@ To run the project, ensure the MongoDB URL is set, and execute the following com
 ```bash
 python app.py
 ```
+
