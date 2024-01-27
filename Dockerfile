@@ -29,7 +29,7 @@ ENV PYTHONPATH=/usr/local/lib/python3.8/site-packages
 ENV LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
 
 # Expose the port
-EXPOSE 8050
+EXPOSE 80
 
 # Run the application
 CMD ["python", "app.py"]

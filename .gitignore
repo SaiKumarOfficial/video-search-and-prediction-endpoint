@@ -164,3 +164,4 @@ test_videos/
 artifacts/
 logs/
 uploaded_videos/
+kubernetes_setup.txt
