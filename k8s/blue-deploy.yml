@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: video-ns
+  name: blue-deployment-video-search
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: blue-video-search-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: blue-video-search-app
+    spec:
+      containers:
+      - name: blue-video-search-app
+        image: saikumar21/video-search-prediction-opt:blue
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aws-secrets
+              key: AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-secrets
+              key: AWS_SECRET_ACCESS_KEY
+        - name: AWS_BUCKET_NAME
+          valueFrom:
+            secretKeyRef:
+              name: aws-secrets
+              key: AWS_BUCKET_NAME
+        - name: AWS_REGION
+          valueFrom:
+            secretKeyRef:
+              name: aws-secrets
+              key: AWS_REGION
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: video-ns
+  name: blue-service-video-search
+  labels: 
+    app.kubernetes.io/name: blue-video-search-app
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: blue-video-search-app 
+    # Here, change the service to green-video-search-app
