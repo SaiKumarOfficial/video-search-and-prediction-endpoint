@@ -3,14 +3,15 @@ from fastapi.templating import Jinja2Templates
 from fastapi import File, UploadFile
 from src.utils.application import save_uploaded_file, image_to_video
 from src.components.predict import Prediction
-from fastapi import FastAPI, Request,UploadFile, File, HTTPException
+from fastapi import FastAPI, Request,UploadFile, File, HTTPException, BackgroundTasks
 from src.components.storage_helper import StorageConnection
 from src.logger import logging
 import uvicorn
-import os      
+import os     
+import time 
 
-connection = StorageConnection()
-connection.get_package_from_testing()
+# connection = StorageConnection()
+# connection.get_package_from_testing()
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"))
@@ -18,10 +19,26 @@ TEMPLATES = Jinja2Templates(directory='templates')
 searchedVideos = []
 predicted_class = ""
 
-
 predict_pipe = Prediction()
 
-    
+class FetchArtifacts:
+    def __init__(self):
+        self.connection = StorageConnection()
+
+    def fetch(self):
+        self.connection.get_package_from_testing()
+        # Simulate delay
+        time.sleep(10)
+
+def fetch_artifacts(background_tasks: BackgroundTasks):
+    task = FetchArtifacts()
+    background_tasks.add_task(task.fetch)
+
+@app.on_event("startup")
+async def startup_event():
+    background_tasks = BackgroundTasks()
+    task = FetchArtifacts()
+    background_tasks.add_task(task.fetch)
 
     
 @app.get("/", status_code=200)
@@ -140,6 +157,6 @@ async def gallery(request: Request):
 
 if __name__ == "__main__":
     
-
+    
     uvicorn.run(app, host="0.0.0.0", port=80)
 
