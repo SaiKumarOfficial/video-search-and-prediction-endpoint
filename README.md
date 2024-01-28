@@ -12,6 +12,31 @@ Organizations like ISRO generate a vast amount of video content that needs to be
 
 Orbit addresses these challenges by combining video classification and search functionalities within a single web application. It streamlines the process for users to input videos or images related to ISRO and receive classifications. The use of LRCN ensures accurate video categorization, and Annoy, coupled with ANN, efficiently retrieves the most relevant videos.
 
+## Pipelines
+
+This project is organized into three pipelines, each serving a specific purpose in the development lifecycle.
+
+### 1. Data Collection Pipeline
+
+The Data Collection Pipeline is responsible for gathering, processing, and preparing the data needed for the machine learning model. This pipeline automates the process of data extraction, transformation, and loading (ETL).
+
+- **Repository Link:**
+  [Data Collection Pipeline Repository](https://github.com/SaiKumarOfficial/video-search-and-classification-data-collection)
+
+### 2. Training Pipeline
+
+The Training Pipeline focuses on training deep learning models using the prepared data from the Data Collection Pipeline. It includes scripts, configurations, and workflows for model training, evaluation, and validation.
+
+- **Repository Link:**
+  [Training Pipeline Repository](https://github.com/SaiKumarOfficial/video-search-and-classification-training-endpoint)
+
+### 3. Production Pipeline
+
+The Production Pipeline handles the deployment and maintenance of the trained deep learning models in a production environment. It includes scripts, configurations, and workflows for model deployment, monitoring, and scaling.
+
+- **Repository Link:**
+  [Production Pipeline Repository](https://github.com/SaiKumarOfficial/video-search-and-prediction-endpoint)
+
 ## Architecture
 ![predictionEndpoint](https://github.com/SaiKumarOfficial/video-search-and-prediction-endpoint/assets/95096218/1de8e202-b8a2-4bfa-9ba3-ae0e07efd5e3)
 
