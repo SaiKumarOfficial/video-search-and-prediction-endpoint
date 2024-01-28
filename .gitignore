@@ -165,3 +165,7 @@ artifacts/
 logs/
 uploaded_videos/
 kubernetes_setup.txt
+k8s/update-secrets.yml
+k8s/updated-secret.yaml
+k8s/green-deploy.yml
+k8s/green-ingress.yml
