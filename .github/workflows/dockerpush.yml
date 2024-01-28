@@ -22,10 +22,14 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_HUB_USERNAME }}/video-search-prediction-opt:latest
+      env:
+        IMAGE_TAG: blue
+      run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_HUB_USERNAME }}/video-search-prediction-opt:$IMAGE_TAG
 
     - name: Push to DockerHub
-      run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/video-search-prediction-opt:latest
+      env:
+        IMAGE_TAG: blue
+      run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/video-search-prediction-opt:$IMAGE_TAG
 
     - name: Logout from DockerHub
       run: docker logout
