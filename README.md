@@ -113,7 +113,7 @@ Deployed application on AWS EKS using Blue/Green strategy with zero downtime and
 I have provided the step by step procedure on how to setup kubernetes and eks cluster. you can check it from the  directory [k8s/kubernetes_setup.md](https://github.com/SaiKumarOfficial/video-search-and-prediction-endpoint/tree/main/k8s) file.
 
 ## Deployment Demo
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=ui-0Svj7i1Q" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ui-0Svj7i1Q?si=_EljTnWrx_BNG5fr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
 ## Run Locally with Docker
