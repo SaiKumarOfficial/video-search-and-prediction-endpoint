@@ -10,8 +10,9 @@ import uvicorn
 import os     
 import time 
 
-# connection = StorageConnection()
-# connection.get_package_from_testing()
+connection = StorageConnection()
+connection.get_package_from_testing()
+time.sleep(10)
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"))
@@ -21,29 +22,13 @@ predicted_class = ""
 
 predict_pipe = Prediction()
 
-class FetchArtifacts:
-    def __init__(self):
-        self.connection = StorageConnection()
 
-    def fetch(self):
-        self.connection.get_package_from_testing()
-        # Simulate delay
-        time.sleep(10)
-
-def fetch_artifacts(background_tasks: BackgroundTasks):
-    task = FetchArtifacts()
-    background_tasks.add_task(task.fetch)
-
-@app.on_event("startup")
-async def startup_event():
-    background_tasks = BackgroundTasks()
-    task = FetchArtifacts()
-    background_tasks.add_task(task.fetch)
 
     
 @app.get("/", status_code=200)
 @app.post("/")
 async def index(request: Request):
+    
     """
     Description : This Route loads the index.html
     """
@@ -157,6 +142,6 @@ async def gallery(request: Request):
 
 if __name__ == "__main__":
     
-    
+
     uvicorn.run(app, host="0.0.0.0", port=80)
 

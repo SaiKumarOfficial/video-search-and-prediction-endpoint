@@ -56,4 +56,4 @@ spec:
   type: NodePort
   selector:
     app.kubernetes.io/name: blue-video-search-app 
-    # Here, change the service to green-video-search-app
+   
