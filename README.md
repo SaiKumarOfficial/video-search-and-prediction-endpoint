@@ -19,8 +19,9 @@ Orbit addresses these challenges by combining video classification and search fu
 
 - Python
 - TensorFlow
-- AWS EC2, ECR, S3
+- AWS IAM, EKS, S3, VPC
 - Docker
+- Kubernetes
 - Mongodb
 - Github Actions
 
@@ -31,7 +32,7 @@ To reduce project costs, the Docker image size was minimized using multi-staged 
 ## In local
 ![dockersizesInlocal](https://github.com/SaiKumarOfficial/video-streaming-data-collection/assets/95096218/a919ce03-ea13-4927-991d-afa64cb1e419)
 
-## In ECR:
+## Compressed image:
 ![dokersizesInECR](https://github.com/SaiKumarOfficial/video-streaming-data-collection/assets/95096218/45d0b233-5400-43b7-ac8f-151fb4e266b8)
 
 
@@ -85,6 +86,34 @@ Visit [http://localhost:8050/](http://localhost:8050/)
 Visit [http://localhost:8050/gallery](http://localhost:8050/gallery)
 ![3-page](https://github.com/SaiKumarOfficial/video-streaming-data-collection/assets/95096218/d138be30-480f-49f0-a064-824ca4f83964)
 
+# Blue/Green Deployment on AWS EKS
+
+Deployed application on AWS EKS using Blue/Green strategy with zero downtime and other key achievements.
+
+## Achievements
+
+- **Zero Downtime Deployment:**
+  - Successfully deployed the application with no impact on user experience, ensuring continuous service availability.
+
+- **Efficient Blue/Green Strategy:**
+  - Implemented a Blue/Green deployment approach, allowing simultaneous operation of the current version (Blue) and the updated version (Green).
+
+- **Smooth Traffic Switch:**
+  - Enabled a seamless transition of user traffic from the Blue to the Green environment upon successful validation.
+
+- **Quick Rollback Capability:**
+  - Implemented a rollback mechanism for quick and efficient reverting to the stable version in case of issues.
+
+- **Consistent User Experience:**
+  - Ensured a consistent user experience throughout the deployment process.
+
+
+## Deployment Setups
+
+I have provided the step by step procedure on how to setup kubernetes and eks cluster. you can check it from the  directory [k8s/kubernetes_setup.md](https://github.com/SaiKumarOfficial/video-search-and-prediction-endpoint/tree/main/k8s) file.
+
+## Deployment Demo
+<iframe width="560" height="315" src="https://www.youtube.com/watch?v=ui-0Svj7i1Q" frameborder="0" allowfullscreen></iframe>
 
 
 ## Run Locally with Docker
@@ -103,13 +132,13 @@ docker build --build-arg AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID>
 3. Run the Docker image:
 
 ```bash
-docker run -d -p 8050:8050 <IMAGE_NAME>
+docker run -d -p 80:80 <IMAGE_NAME>
 ```
 
 4. Access the application locally:
 
 ```bash
-http://localhost:8050/
+http://localhost:80/
 ```
 
 To run the project, ensure the MongoDB URL is set, and execute the following command:
