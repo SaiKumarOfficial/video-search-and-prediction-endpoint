@@ -28,8 +28,6 @@ WORKDIR /prediction
 ENV PYTHONPATH=/usr/local/lib/python3.8/site-packages
 ENV LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
 
-# Fetch the artifacts
-RUN python src/components/storage_helper.py
 # Expose the port
 EXPOSE 80
 
