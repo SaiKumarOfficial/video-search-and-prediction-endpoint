@@ -10,9 +10,9 @@ import uvicorn
 import os     
 import time 
 
-connection = StorageConnection()
-connection.get_package_from_testing()
-time.sleep(10)
+# connection = StorageConnection()
+# connection.get_package_from_testing()
+# time.sleep(10)
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"))
