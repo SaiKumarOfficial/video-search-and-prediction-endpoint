@@ -6,6 +6,7 @@ from src.components.predict import Prediction
 from fastapi import FastAPI, Request,UploadFile, File, HTTPException, BackgroundTasks
 from src.components.storage_helper import StorageConnection
 from src.logger import logging
+from fastapi.responses import JSONResponse
 import uvicorn
 import os     
 import time 
@@ -136,8 +137,18 @@ async def gallery(request: Request):
     Description : This Route lists all the predicted images on the gallery.html listing depends on prediction.
     """
     global searchedVideos
-    return TEMPLATES.TemplateResponse('gallery.html', context={"request": request, "length": len(searchedVideos),
-                                                               "searchedVideos": searchedVideos, "predicted_class": predicted_class})
+    # return TEMPLATES.TemplateResponse('gallery.html', context={"request": request, "length": len(searchedVideos),
+
+    #                                                    "searchedVideos": searchedVideos, "predicted_class": predicted_class})
+    return {"Response": "Successfully Loaded", "searchedVideos": searchedVideos, "predicted_class": predicted_class}
+
+# @app.get('/get_predicted_class', response_model=dict)
+# async def get_predicted_class():
+#     """
+#     Description: This route returns the predicted class in JSON format.
+#     """
+#     global predicted_class
+#     return JSONResponse(content={"predicted_class": predicted_class})
 
 
 if __name__ == "__main__":

@@ -23,12 +23,12 @@ jobs:
 
     - name: Build the Docker image
       env:
-        IMAGE_TAG: green
+        IMAGE_TAG: v.1.0.0
       run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_HUB_USERNAME }}/video-search-prediction-opt:$IMAGE_TAG
 
     - name: Push to DockerHub
       env:
-        IMAGE_TAG: green
+        IMAGE_TAG: v.1.0.0
       run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/video-search-prediction-opt:$IMAGE_TAG
 
     - name: Logout from DockerHub
