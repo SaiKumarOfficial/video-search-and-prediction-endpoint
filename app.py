@@ -11,9 +11,9 @@ import uvicorn
 import os     
 import time 
 
-connection = StorageConnection()
+""" connection = StorageConnection()
 connection.get_package_from_testing()
-time.sleep(10)
+time.sleep(10) """
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"))
@@ -137,10 +137,10 @@ async def gallery(request: Request):
     Description : This Route lists all the predicted images on the gallery.html listing depends on prediction.
     """
     global searchedVideos
-    # return TEMPLATES.TemplateResponse('gallery.html', context={"request": request, "length": len(searchedVideos),
+    return TEMPLATES.TemplateResponse('gallery.html', context={"request": request, "length": len(searchedVideos),
 
-    #                                                    "searchedVideos": searchedVideos, "predicted_class": predicted_class})
-    return {"Response": "Successfully Loaded", "searchedVideos": searchedVideos, "predicted_class": predicted_class}
+                                                        "searchedVideos": searchedVideos, "predicted_class": predicted_class})
+    #return {"Response": "Successfully Loaded", "searchedVideos": searchedVideos, "predicted_class": predicted_class}
 
 # @app.get('/get_predicted_class', response_model=dict)
 # async def get_predicted_class():
