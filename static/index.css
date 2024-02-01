@@ -19,7 +19,7 @@ body {
     display: flex;
     justify-content: center;
     min-height: 100vh;
-    background: #5256ad;
+    background: linear-gradient(to right, #8b5cf6, #60a5fa, #8b5cf6);
 }
 
 .drag-area {
