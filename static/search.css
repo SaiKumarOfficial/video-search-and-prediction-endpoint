@@ -1,0 +1,134 @@
+.navbar-light .navbar-brand {
+    color: rgba(0, 0, 0, .9);
+}
+
+.navbar-light .navbar-brand {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #8b5cf6, #60a5fa, #8b5cf6); 
+    /* background: #8b5cf6; */
+}
+
+
+.drag-area {
+    border: 2px dashed grey;
+    height: 500px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #fff;
+}
+
+.drag-area.active {
+    border: 2px solid #fff;
+}
+
+.drag-area .icon {
+    font-size: 80px;
+    color: #4a4a4a;
+}
+
+.drag-area {
+    font-size: 30px;
+    font-weight: 500;
+    color: #4a4a4a;
+}
+
+.drag-area span {
+    font-size: 30px;
+    font-weight: 500;
+    color: #4a4a4a;
+    margin: 10px 0 15px 0;
+}
+
+.drag-area button {
+    padding: 8px 15px;
+    font-size: 20px;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    background: #4a4a4a;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.7s ease;
+}
+
+.drag-area button:hover {
+    background-color: #1a202c; /* Hover color */
+}
+
+.drag-area img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.btn-white {
+    padding: 1px 20px;
+    font-size: 20px;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    background: #2b6cb0;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-white:hover {
+    background-color: #fff;
+    transition: 0.7s;
+}
+
+/* #logo {
+    display: inline-flex;
+    width: 150px;
+    height: 150px;
+} */
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 50;
+}
+
+header nav {
+    background: linear-gradient(to right, #4a4a4a, #e5e5e5); /* Use the desired colors */
+    border: 1px solid #e5e5e5;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 15px;
+}
+
+header a:hover {
+    color: #1a202c; /* Hover color */
+}
