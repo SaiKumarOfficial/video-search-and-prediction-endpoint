@@ -23,15 +23,16 @@ body {
     /* background: #8b5cf6; */
 }
 
+
 .drag-area {
-    border: 2px dashed #fff;
-    height: 300px;
+    border: 2px dashed grey;
+    height: 500px;
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: #ababab;
+    background: #fff;
 }
 
 .drag-area.active {
@@ -39,40 +40,45 @@ body {
 }
 
 .drag-area .icon {
-    font-size: 60px;
-    color: #fff;
+    font-size: 80px;
+    color: #4a4a4a;
 }
 
-.drag-area header {
-    font-size: 20px;
+.drag-area {
+    font-size: 30px;
     font-weight: 500;
-    color: #fff;
+    color: #4a4a4a;
 }
 
 .drag-area span {
-    font-size: 16px;
+    font-size: 30px;
     font-weight: 500;
-    color: #fff;
+    color: #4a4a4a;
     margin: 10px 0 15px 0;
 }
 
 .drag-area button {
     padding: 8px 15px;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 500;
     border: none;
     outline: none;
-    background: #fff;
-    color: #2b6cb0;
+    background: #4a4a4a;
+    color: #fff;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.7s ease;
+}
+
+.drag-area button:hover {
+    background-color: #1a202c; /* Hover color */
 }
 
 .drag-area img {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .btn-white {
@@ -93,8 +99,36 @@ body {
     transition: 0.7s;
 }
 
-#logo {
+/* #logo {
     display: inline-flex;
     width: 150px;
     height: 150px;
+} */
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 50;
+}
+
+header nav {
+    background: linear-gradient(to right, #4a4a4a, #e5e5e5); /* Use the desired colors */
+    border: 1px solid #e5e5e5;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 15px;
+}
+
+header a:hover {
+    color: #1a202c; /* Hover color */
 }

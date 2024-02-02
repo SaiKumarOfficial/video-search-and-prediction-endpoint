@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800;900&display=swap');
 body {
-    font-family: 'Raleway', sans-serif;
+    font-family: "Poppins", sans-serif;
     background: linear-gradient(to right, #8b5cf6, #60a5fa, #8b5cf6);
 }
 
@@ -16,25 +16,25 @@ body {
 }
 
 .navbar-brand span {
-    font-family: 'Krona One', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .nav-item:hover {
     color: #E2B842;
 }
 
-.nav-item h1 {
+.nav-item h2 {
     color: #fff;
-    font-weight: 700;
-    font-family: "Montserrat";
+    font-weight: 00;
+    font-family: "Poppins", sans-serif;
     text-align: center;
 }
 
 .modern-heading {
-    font-family: 'Montserrat', sans-serif;
-    color: #333;
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+    font-family: "Poppins", sans-serif;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 @media only screen and (max-width: 760px) {
@@ -46,7 +46,7 @@ body {
 .predicted-class-container {
     display: flex;
     align-items: center;
-    font-family: sans-serif;
+    font-family: "Poppins", sans-serif;
     margin-bottom: 10px;
     /* Adjust spacing as needed */
 }
@@ -55,15 +55,15 @@ body {
 /* Style for the prediction message container */
 
 .prediction-message {
-    background-color: #4CAF50;
+    background-color: #8bfe87;
     /* Green background color */
-    color: #fff;
+    color: #4a4a4a;
     /* White text color */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 15px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin: 20px;
+    margin: 10px 300px;
 }
 
 
@@ -73,7 +73,7 @@ body {
     font-weight: bold;
     font-size: 20px;
     color: #2B2B52;
-    font-family: 'Franklin Gothic Medium';
+    font-family: "Poppins", sans-serif;
 }
 
 
@@ -122,7 +122,7 @@ body {
 }
 
 .recommend-title {
-    font-family: sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: 600;
     font-size: 24px;
     margin-left: 10px;

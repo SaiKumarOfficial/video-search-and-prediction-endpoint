@@ -5,27 +5,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>VidGalaxy</title>
-
-    <link rel="shortcut icon" href="../static/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/gallery.css">
 </head>
 
 <body>
-    <nav class="navbar  navbar-expand-md custom-navbar navbar-dark" style="background: #5256ad;">
+    <header class="fixed w-full top-0 z-50">
+    <nav class="bg-gradient-to-r from-gray-700 to-gray-200 border-gray-200 px-4 lg:px-6 py-2.5">
+    <!-- <nav class="navbar  navbar-expand-md custom-navbar navbar-dark" style="background: linear-gradient(to right, #4a4a4a, #e5e5e5);"> -->
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">
-                <img src="../static/orbit.png" width="100" height="100" class="d-inline-block align-top" alt="">
-                <!-- <span>Orb!t</span> -->
-            </a>
+
             <div class="collapse navbar-collapse " id="collapsibleNavbar">
                 <ul class="navbar-nav m-auto ">
                     <li class="nav-item">
-                        <h1 class="modern-heading">Visual Matches</h1>
+                        <h2 class="modern-heading">Video Classification</h2>
                     </li>
                 </ul>
-                <a class="btn btn-primary btn-sm" style="background: #FF362E; color: white; border-radius: 10px" href="/">Go Back</a>
+                <a class="btn btn-primary btn-md" style="background: #4a4a4a; color: white; border-radius: 5px" href="/">Go Back</a>
             </div>
         </div>
 
@@ -34,14 +31,13 @@
 
     <div id="prediction-message" class="prediction-message">
         <p>Congratulations! 🎉 The predicted class for the video is <strong>{{ predicted_class }}</strong>.</p>
-        <p>Enjoy watching and exploring more content! &#128640 🔍</p>
 
     </div>
 
 
     <div class="recommend-video">
         <h2 class="recommend-title">
-            Recommendations for you &#128512;
+            Recommendations for you
         </h2><br>
     </div>
 
