@@ -1,5 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
 body {
     font-family: "Poppins", sans-serif;
     background: linear-gradient(to right, #8b5cf6, #60a5fa, #8b5cf6);
@@ -9,12 +15,18 @@ body {
     background-color: #000000;
 }
 
-.custom-navbar {
-    background: #000000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /* Set your background color here */
+.btn-go-back {
+    display: inline-block;
+    background: #4a4a4a;
+    color: white;
+    border-radius: 5px;
+    margin-right: 10px; /* Adjust margin as needed */
 }
 
+/* .custom-navbar {
+    background: #000000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}  */
 .navbar-brand span {
     font-family: "Poppins", sans-serif;
 }
@@ -25,7 +37,7 @@ body {
 
 .nav-item h2 {
     color: #fff;
-    font-weight: 00;
+    font-weight: 500;
     font-family: "Poppins", sans-serif;
     text-align: center;
 }
@@ -34,20 +46,15 @@ body {
     font-family: "Poppins", sans-serif;
     color: #fff;
     font-size: 2rem;
-    font-weight: 600;
+    font-weight: 500;
 }
 
-@media only screen and (max-width: 760px) {
-    #logo_custom {
-        width: 40%;
-    }
-}
 
 .predicted-class-container {
     display: flex;
     align-items: center;
     font-family: "Poppins", sans-serif;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     /* Adjust spacing as needed */
 }
 
@@ -57,13 +64,13 @@ body {
 .prediction-message {
     background-color: #8bfe87;
     /* Green background color */
-    color: #4a4a4a;
+    color: #2B2B52;
     /* White text color */
-    padding: 20px;
+    padding: 2px;
     border-radius: 8px;
-    box-shadow: 0 15px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin: 10px 300px;
+    margin: 0px 300px;
 }
 
 
@@ -71,14 +78,13 @@ body {
 
 .prediction-message strong {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 16px;
     color: #2B2B52;
     font-family: "Poppins", sans-serif;
 }
 
 
 /* Default styles for video thumbnail container */
-
 .video-row {
     display: flex;
     /* Arrange videos in a row */
@@ -86,12 +92,14 @@ body {
     /* Wrap videos to the next line if needed */
     justify-content: space-between;
     /* Even spacing between videos */
+    margin: 0px 33px;
+    margin-bottom: 33px;
 }
 
 .video-card {
-    width: 300px;
+    width: 360px;
     /* Adjust width as needed */
-    margin: 10px;
+    margin: 15px;
     border-radius: 8px;
     box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
     /* Subtle shadow */
@@ -125,7 +133,7 @@ body {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     font-size: 24px;
-    margin-left: 10px;
+    margin-left: 40px;
     margin-bottom: 0;
     color: #ffffff;
     /* Darker text color */
@@ -136,4 +144,32 @@ body {
     /* Slightly larger emoji */
     vertical-align: middle;
     /* Align emoji with text */
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 50;
+}
+
+header nav {
+    background: linear-gradient(to right, #4a4a4a, #e5e5e5); /* Use the desired colors */
+    border: 1px solid #e5e5e5;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 15px;
+}
+
+header a:hover {
+    color: #1a202c; /* Hover color */
 }
