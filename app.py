@@ -37,6 +37,17 @@ async def index(request: Request):
     
     return TEMPLATES.TemplateResponse(name='index.html', context={"request": request})
 
+@app.get("/search", status_code=200)
+async def search(request: Request):
+    
+    """
+    Description : This Route loads the search.html
+    """
+    print("/search route called")
+    
+    return TEMPLATES.TemplateResponse(name='search.html', context={"request": request})
+
+
 @app.post('/image')
 async def predict_the_image_class(file: UploadFile = File(...)):
     global searchedVideos, predict_pipe, predicted_class
@@ -142,6 +153,16 @@ async def gallery(request: Request):
                                                         "searchedVideos": searchedVideos, "predicted_class": predicted_class})
     #return {"Response": "Successfully Loaded", "searchedVideos": searchedVideos, "predicted_class": predicted_class}
 
+
+@app.get('/searchgallery')
+async def searchgallery(request: Request):
+    """
+    Description : This Route lists all the predicted images on the searchgallery.html listing depends on prediction.
+    """
+    global searchedVideos
+    return TEMPLATES.TemplateResponse('searchgallery.html', context={"request": request, "length": len(searchedVideos),
+
+                                                        "searchedVideos": searchedVideos, "predicted_class": predicted_class})
 # @app.get('/get_predicted_class', response_model=dict)
 # async def get_predicted_class():
 #     """
