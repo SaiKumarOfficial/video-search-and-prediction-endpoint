@@ -50,38 +50,36 @@ body {
 }
 
 
-.predicted-class-container {
+/* .predicted-class-container {
     display: flex;
     align-items: center;
     font-family: "Poppins", sans-serif;
-    /* margin-bottom: 10px; */
-    /* Adjust spacing as needed */
 }
-
+ */
 
 /* Style for the prediction message container */
 
-.prediction-message {
+/* .prediction-message {
     background-color: #8bfe87;
-    /* Green background color */
+
     color: #2B2B52;
-    /* White text color */
+    
     padding: 2px;
     border-radius: 8px;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
     margin: 0px 300px;
-}
+} */
 
 
 /* Style for the strong element within the message */
 
-.prediction-message strong {
+/* .prediction-message strong {
     font-weight: bold;
     font-size: 16px;
     color: #2B2B52;
     font-family: "Poppins", sans-serif;
-}
+} */
 
 
 /* Default styles for video thumbnail container */
@@ -133,7 +131,8 @@ body {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     font-size: 24px;
-    margin-left: 40px;
+    margin-top: 40px;
+    margin-left: 45px;
     margin-bottom: 0;
     color: #ffffff;
     /* Darker text color */
