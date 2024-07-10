@@ -1,8 +1,8 @@
-# Orbit: Video Search and Classification
+# ISRO Video Search Engine and Classification
 
 ## Overview
 
-Orbit is a web application designed to facilitate video search and classification, specifically tailored for content relevant to the Indian Space Research Organisation (ISRO). The application employs a Long-Short Term Memory with Recurrent Convolutional Networks (LRCN) model for video classification. It supports five initial class labels: 'Animation', 'Graphics', 'IndoorControlRoom', 'OutdoorLaunchpad', and 'PersonCloseUp'. Utilizing Annoy for efficient embedding representation, the application provides users with the ten most relevant videos using Approximate Nearest Neighbors (ANN).
+Orbit(named it as) is a web application designed to facilitate video search and classification, specifically tailored for content relevant to the Indian Space Research Organisation (ISRO). The application employs a Long-Short Term Memory with Recurrent Convolutional Networks (LRCN) model for video classification. It supports five initial class labels: 'Animation', 'Graphics', 'IndoorControlRoom', 'OutdoorLaunchpad', and 'PersonCloseUp'. Utilizing Annoy for efficient embedding representation, the application provides users with the ten most relevant videos using Approximate Nearest Neighbors (ANN).
 
 ## Problem Statement
 
