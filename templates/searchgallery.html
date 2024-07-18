@@ -7,7 +7,7 @@
     <title>VidGalaxy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/gallery.css">
+    <link rel="stylesheet" href="../static/searchgallery.css">
 </head>
 
 <body>
@@ -15,7 +15,7 @@
     <nav class="bg-gradient-to-r from-gray-700 to-gray-200 border-gray-200 px-4 lg:px-6 py-2.5">
         <div class="container flex items-center justify-between">
                 
-            <a href="/gallery" class="flex items-center">
+            <a href="/searchgallery" class="flex items-center">
                 <img
                     src="https://flowbite.com/docs/images/logo.svg"
                     class="mr-3 h-6 sm:h-9"
@@ -28,23 +28,23 @@
         </div>
         
         <div class="container flex items-center" style="margin-left: -200px;">
-            <a href="/gallery" class="text-white text-xl">Video Classification</a>
+            <a href="/searchgallery" class="text-white text-xl">Video Search</a>
         </div>
-        <a class="btn btn-primary btn-md btn-go-back" style="display: inline-block; background: #4a4a4a; color: white; border-radius: 5px" href="/">Back</a>
+        <a class="btn btn-primary btn-md btn-go-back" style="display: inline-block; background: #4a4a4a; color: white; border-radius: 5px" href="/search">Back</a>
 
     </nav>
     </header>
 
 
-    <div id="prediction-message" class="prediction-message" style="margin-top: 75px;">
+    <!-- <div id="prediction-message" class="prediction-message" style="margin-top: 75px;">
         <p>Congratulations! 🎉 The predicted class for your video is <strong>{{ predicted_class }}</strong>.</p>
-    </div>
+    </div> -->
 
 
     <div class="recommend-video">
         <br>
         <h2 class="recommend-title">
-            Recommendations for you
+            Here are your search results!
         </h2><br>
     </div>
 
